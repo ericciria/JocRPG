@@ -12,6 +12,7 @@ TagManager:
   - Attack
   - Death
   - PlayerBullet
+  - cubu
   layers:
   - Default
   - TransparentFX
