@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     AudioSource sound;
 
     public LayerMask enemyLayer;
+    private LayerMask objectLayer;
 
     [SerializeField] public float attackRadius;
     [SerializeField] public Transform attackHitboxPos;
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     public bool canSave;
 
+    private GameObject circle;
 
     void Start()
     {
@@ -47,6 +49,7 @@ public class PlayerController : MonoBehaviour
         canSave = true;
         enemies = 9;
         sound = gameObject.GetComponent<AudioSource>();
+        objectLayer = LayerMask.GetMask("Object");
 
         manaUI.text = "Mana: " + mana;
         nivellUI.text = "nivell: " + level;
@@ -65,6 +68,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.P))
         {
             DamagePlayer(10);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            CheckInteractuable();
         }
 
         camara.transform.position = new Vector3(rb.position.x, rb.position.y, -10);
@@ -193,6 +200,24 @@ public class PlayerController : MonoBehaviour
             if (enemic.GetComponent<Destroyable>() != null)
             {
                 enemic.GetComponent<Destroyable>().Destruir();
+            }
+        }
+    }
+
+    private void CheckInteractuable()
+    {
+        Collider2D[] detectedOjects = Physics2D.OverlapCircleAll(attackHitboxPos.position, attackRadius, objectLayer);
+
+        foreach (Collider2D objecte in detectedOjects)
+        {
+            if (objecte.GetComponent<Interactuable>() != null)
+            {
+                Interactuable qwer = objecte.GetComponent<Interactuable>();
+                if (!qwer.objecte.activeSelf)
+                {
+                    qwer.objecte.SetActive(true);
+                }
+                qwer.activat = true;
             }
 
         }
