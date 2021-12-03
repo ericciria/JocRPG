@@ -47,10 +47,17 @@ public class Empenyable : MonoBehaviour
         }
         if (col.gameObject.tag == "Finish")
         {
-            Debug.Log("AAAAAAAAAAAAAAA");
-            this.enabled = false;
             GameObject porta = GameObject.Find("Porta");
-            porta.SetActive(false);
+            Porta portap = porta.GetComponent<Porta>();
+            portap.contador++;
+            if (portap.contador == 2)
+            {
+                portap.Moure();
+            }
+            Debug.Log("AAAAAAAAAAAAAAA");
+            //this.enabled = false;
+            
+            //porta.SetActive(false);
         }
     }
 
