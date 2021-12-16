@@ -51,7 +51,7 @@ public class NPC : MonoBehaviour
 
     IEnumerator Contador()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(6);
         text.SetActive(false);
     }
 
