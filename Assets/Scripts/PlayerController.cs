@@ -213,13 +213,11 @@ public class PlayerController : MonoBehaviour
             if (objecte.GetComponent<Interactuable>() != null)
             {
                 Interactuable qwer = objecte.GetComponent<Interactuable>();
-                if (!qwer.objecte.activeSelf)
-                {
-                    qwer.objecte.SetActive(true);
+                if(qwer.activat == false){
+                    qwer.activat = true;
+                    qwer.Activar();
                 }
-                qwer.activat = true;
             }
-
         }
     }
 

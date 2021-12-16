@@ -31,8 +31,10 @@ public class Empenyable : MonoBehaviour
 
         if (col.gameObject.tag == "Player")
         {
-            distanceX = Mathf.Clamp(this.transform.position.x - col.transform.position.x, -1, 1);
-            distanceY = Mathf.Clamp(this.transform.position.y - col.transform.position.y, -1, 1);
+            
+
+            distanceX = Input.GetAxisRaw("Horizontal");
+            distanceY = Input.GetAxisRaw("Vertical");
             Debug.Log("distanceX: " + distanceX);
             Debug.Log("distanceY: " + distanceY);
             if (distanceX == 1 || distanceX == -1)
@@ -47,7 +49,7 @@ public class Empenyable : MonoBehaviour
         }
         if (col.gameObject.tag == "Finish")
         {
-            GameObject porta = GameObject.Find("Porta");
+            GameObject porta = GameObject.Find("Gate");
             Porta portap = porta.GetComponent<Porta>();
             portap.contador++;
             if (portap.contador == 2)
