@@ -218,6 +218,11 @@ public class PlayerController : MonoBehaviour
                     qwer.Activar();
                 }
             }
+            if (objecte.GetComponent<Palanca>() != null)
+            {
+                Palanca qwer = objecte.GetComponent<Palanca>();
+                qwer.Activar();
+            }
         }
     }
 
