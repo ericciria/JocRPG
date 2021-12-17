@@ -8,7 +8,6 @@ public class Porta : MonoBehaviour
     Vector2 mov;
     public int contador;
 
-    // Start is called before the first frame update
     void Start()
     {
         this.enabled = false;
@@ -18,7 +17,6 @@ public class Porta : MonoBehaviour
         contador = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         rb.MovePosition(rb.position + mov * Time.deltaTime);

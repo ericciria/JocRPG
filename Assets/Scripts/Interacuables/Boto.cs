@@ -9,20 +9,23 @@ public class Boto : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     [SerializeField] Sprite sprite1;
     [SerializeField] Sprite sprite2;
+    [SerializeField] bool intermitent;
+    bool objectPressed;
 
 
 
     void Start()
     {
-        activat = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = sprite2;
+        spriteRenderer.sprite = sprite1;
+        objectPressed = false;
+        //Debug.Log(spriteRenderer.sprite);
     }
 
     public void Activar()
     {
-        ChangeSprite();
         ActivarObjecte();
+        ChangeSprite();
     }
 
     public void ChangeSprite()
@@ -39,7 +42,21 @@ public class Boto : MonoBehaviour
     }
     public void ActivarObjecte()
     {
-        activat = !activat;
+        if (intermitent)
+        {
+            if (objectPressed)
+            {
+                activat = true;
+            }
+            else
+            {
+                activat = !activat;
+            }
+        }
+        else
+        {
+            activat = true;
+        }
         objecte.SetActive(activat);
     }
 
@@ -47,8 +64,13 @@ public class Boto : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            ActivarObjecte();
-            ChangeSprite();
+            Activar();
+        }
+        if (col.gameObject.tag == "Object")
+        {
+            Debug.Log("A");
+            objectPressed = true;
+            Activar();
         }
     }
 
@@ -56,8 +78,14 @@ public class Boto : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            ActivarObjecte();
-            ChangeSprite();
+            activat = true;
+            Activar();
+        }
+        if (col.gameObject.tag == "Object")
+        {
+            Debug.Log("AA");
+            objectPressed = false;
+            Activar();
         }
     }
 }

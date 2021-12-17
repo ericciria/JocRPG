@@ -21,8 +21,13 @@ public class Empenyable : MonoBehaviour
             distanceX,
             distanceY
         );
-        rb.MovePosition(rb.position + mov * speed * Time.deltaTime);
+        
 
+    }
+
+    private void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + mov * speed * Time.fixedDeltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -45,21 +50,7 @@ public class Empenyable : MonoBehaviour
             {
                 distanceX = 0;
             }
-            speed = 5;
-        }
-        if (col.gameObject.tag == "Finish")
-        {
-            GameObject porta = GameObject.Find("Gate");
-            Porta portap = porta.GetComponent<Porta>();
-            portap.contador++;
-            if (portap.contador == 2)
-            {
-                portap.Moure();
-            }
-            Debug.Log("AAAAAAAAAAAAAAA");
-            //this.enabled = false;
-            
-            //porta.SetActive(false);
+            speed = 2;
         }
     }
 
