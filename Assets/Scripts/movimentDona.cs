@@ -12,6 +12,7 @@ public class movimentDona : MonoBehaviour
     Rigidbody2D rb;
     Vector2 mov;
     int vida, vidamax;
+    public PlayerController v;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,5 +74,17 @@ public class movimentDona : MonoBehaviour
         vidaSprite.transform.localScale = new Vector2(Mathf.Clamp(1f / vidamax * vida, 0, 1), 0.2f);
         temporitzadorVida = true;
         
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player"  && v.sumarVida == true)
+        {
+            
+            vida +=5;
+            text.text = "Salut Germana: " + vida;
+            v.sumarVida = false;
+            Debug.Log("Hola");
+        }
+
     }
 }
