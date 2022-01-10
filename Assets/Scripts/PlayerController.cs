@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     Vector2 mov;
 
     public bool canSave;
+    public bool sumarVida;
 
     private GameObject circle;
 
@@ -285,6 +286,13 @@ public class PlayerController : MonoBehaviour
         {
             npc.NPCDialogue(); ;
         }
+
+        if (collision.gameObject.tag == "vida")
+        {
+            sumarVida = true;
+            Destroy(GameObject.FindWithTag("vida"));
+            Debug.Log(sumarVida);
+        }
     }
 
     void OnTriggerExit2D(Collider2D collision)
@@ -355,4 +363,6 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.DrawWireSphere(attackHitboxPos.position, attackRadius);
     }
+
+
 }

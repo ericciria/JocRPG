@@ -13,6 +13,8 @@ TagManager:
   - Death
   - PlayerBullet
   - cubu
+  - bala
+  - vida
   layers:
   - Default
   - TransparentFX
