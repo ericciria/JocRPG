@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     public float speedMultiplier = 1f;
     public float knockbackForce = 1000f;
     public int attackDamage = 1;
-    public int level, health, exp, enemies;
+    public int level, health, exp;
 
     public Text nivellUI, vidaUI, manaUI;
     public HealthBar healthBar;
@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Transform attackHitboxPos;
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private GameObject levelUp;
+    [SerializeField] private UIInventory uiInventory;
 
     Animator anim;
     Rigidbody2D rb;
@@ -38,6 +39,13 @@ public class PlayerController : MonoBehaviour
     public bool sumarVida;
 
     private GameObject circle;
+    private Inventory inventory;
+
+    private void Awake()
+    {
+        inventory = new Inventory();
+        uiInventory.SetInventory(inventory);
+    }
 
     void Start()
     {
@@ -48,7 +56,6 @@ public class PlayerController : MonoBehaviour
         exp = 0;
         level = 1;
         canSave = true;
-        enemies = 9;
         sound = gameObject.GetComponent<AudioSource>();
         objectLayer = LayerMask.GetMask("Object");
 
@@ -282,10 +289,10 @@ public class PlayerController : MonoBehaviour
         {
             DamagePlayer(50000);
         }
-        if (collision.tag == "NPC")
+        /*if (collision.tag == "NPC")
         {
             npc.NPCDialogue(); ;
-        }
+        }*/
 
         if (collision.gameObject.tag == "vida")
         {

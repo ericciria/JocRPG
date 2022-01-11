@@ -20,7 +20,7 @@ public class NPC : MonoBehaviour
         text.SetActive(!text.activeSelf);
     }
 
-    public void NPCDialogue()
+    /*public void NPCDialogue()
     {
         text.SetActive(true);
         contadorLinies += 1;
@@ -47,7 +47,7 @@ public class NPC : MonoBehaviour
             Time.timeScale = 0;
         }
 
-    }
+    }*/
 
     IEnumerator Contador()
     {

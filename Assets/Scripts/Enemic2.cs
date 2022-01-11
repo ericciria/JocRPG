@@ -73,7 +73,6 @@ public class Enemic2 : MonoBehaviour
         if (health <= 0)
         {
             Instantiate(deathParticle, rb.transform.position, deathParticle.transform.rotation);
-            player.enemies -= 1;
             player.UpdateExp(expPoints);
             Destroy(gameObject);
         }
