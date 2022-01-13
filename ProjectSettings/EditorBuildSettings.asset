@@ -17,4 +17,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RPG2_Pantalla2.unity
     guid: 73fea2beb5d8ce247b3204252cfd84da
+  - enabled: 1
+    path: Assets/Scenes/casaFora.unity
+    guid: c211e53810b8dbc4a850ef89089df19f
+  - enabled: 1
+    path: Assets/Scenes/room.unity
+    guid: 4685aaa699e391e4fb2f7264546a0a85
+  - enabled: 1
+    path: Assets/Scenes/level2.unity
+    guid: 2d644b7fdd9cb0943896f82402c9a859
+  - enabled: 1
+    path: Assets/Scenes/level1.unity
+    guid: 20c9c9d2117477f418950eebbd2a7c86
   m_configObjects: {}

@@ -26,7 +26,7 @@ public class MenuManager : MonoBehaviour
 
     public void Level1()
     {
-        SceneManager.LoadScene("Pantalla1");
+        SceneManager.LoadScene("casaFora");
     }
 
     public void Level2()
