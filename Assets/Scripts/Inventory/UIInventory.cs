@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIInventory : MonoBehaviour
 {
@@ -21,15 +22,21 @@ public class UIInventory : MonoBehaviour
     }
     private void RefreshInventory()
     {
+        
         int x = 0;
-        int y = 0;
         float cellSize = 50f;
 
         foreach (Item item in inventory.GetItemList())
         {
+            
             RectTransform itemSlotRectTransform = Instantiate(itemTemplate, itemContainer).GetComponent<RectTransform>();
             itemSlotRectTransform.gameObject.SetActive(true);
-            itemSlotRectTransform.anchoredPosition = new Vector2(x * cellSize, y * cellSize);
+            itemSlotRectTransform.anchoredPosition = new Vector2(x * cellSize, 0);
+
+            Image image = itemSlotRectTransform.Find("Image").GetComponent<Image>();
+            image.sprite = item.GetSprite();
+            
+
             x++;
         }
     }

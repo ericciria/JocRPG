@@ -15,8 +15,6 @@ public class Inventory
         AddItem(new Item { itemType = Item.ItemType.FinalKey, amount = 1 });
         AddItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
 
-        Debug.Log(itemList.Count);
-        Debug.Log("Inventory");
     }
 
     public void AddItem(Item item)

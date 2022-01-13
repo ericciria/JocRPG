@@ -20,9 +20,9 @@ public class Item
         switch (itemType)
         {
             default:
-            case ItemType.HealingHerb: return ItemAssets.Instance.healingHerbSprite;
-            case ItemType.Key: return ItemAssets.Instance.keySprite;
-            case ItemType.FinalKey: return ItemAssets.Instance.finalKeySprite;
+            case ItemType.HealingHerb:  return ItemAssets.Instance.healingHerbSprite;
+            case ItemType.Key:          return ItemAssets.Instance.keySprite;
+            case ItemType.FinalKey:     return ItemAssets.Instance.finalKeySprite;
             case ItemType.HealthPotion: return ItemAssets.Instance.healingHerbSprite;
         }
     }

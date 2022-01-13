@@ -44,11 +44,12 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         inventory = new Inventory();
-        uiInventory.SetInventory(inventory);
+        
     }
 
     void Start()
     {
+        uiInventory.SetInventory(inventory);
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
