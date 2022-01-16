@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         inventory = new Inventory();
-        
     }
 
     void Start()
@@ -81,6 +80,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             CheckInteractuable();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Item prova = new Item { itemType = Item.ItemType.HealthPotion, amount = 1 };
+            inventory.RemoveItem(prova);
+            uiInventory.RefreshInventory();
         }
 
         camara.transform.position = new Vector3(rb.position.x, rb.position.y, -10);
@@ -300,6 +305,12 @@ public class PlayerController : MonoBehaviour
             sumarVida = true;
             Destroy(GameObject.FindWithTag("vida"));
             Debug.Log(sumarVida);
+        }
+        if (collision.gameObject.tag == "Object")
+        {
+            ItemGround itemGround = collision.GetComponent<ItemGround>();
+            inventory.AddItem(itemGround.GetItem());
+            itemGround.DestroySelf();
         }
     }
 
