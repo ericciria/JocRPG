@@ -44,11 +44,11 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         inventory = new Inventory();
-      //  uiInventory.SetInventory(inventory);
     }
 
     void Start()
     {
+        uiInventory.SetInventory(inventory);
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         health = maxHealth;
@@ -80,6 +80,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             CheckInteractuable();
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Item prova = new Item { itemType = Item.ItemType.HealthPotion, amount = 1 };
+            inventory.RemoveItem(prova);
+            uiInventory.RefreshInventory();
         }
 
         camara.transform.position = new Vector3(rb.position.x, rb.position.y, -10);
@@ -283,7 +289,7 @@ public class PlayerController : MonoBehaviour
             Vector2 difference = (transform.position - collision.transform.position).normalized;
             Vector2 force = difference * knockbackForce;
             rb.AddForce(force);
-            //Debug.Log("colisió amb enemic");
+            //Debug.Log("colisiï¿½ amb enemic");
         }
         if (collision.tag == "Death")
         {
@@ -299,6 +305,12 @@ public class PlayerController : MonoBehaviour
             sumarVida = true;
             Destroy(GameObject.FindWithTag("vida"));
             Debug.Log(sumarVida);
+        }
+        if (collision.gameObject.tag == "Object")
+        {
+            ItemGround itemGround = collision.GetComponent<ItemGround>();
+            inventory.AddItem(itemGround.GetItem());
+            itemGround.DestroySelf();
         }
     }
 
