@@ -6,6 +6,7 @@ using UnityEngine.Assertions;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject ui;
     public int maxHealth = 100, maxMana = 100;
 
     public float speed = 4f, mana;
@@ -14,12 +15,21 @@ public class PlayerController : MonoBehaviour
     public int attackDamage = 1;
     public int level, health, exp;
 
-    public Text nivellUI, vidaUI, manaUI;
-    public HealthBar healthBar;
-    public ManaBar  manaBar;
-    public Camera camara;
+    //public Text nivellUI, vidaUI, manaUI;
+    //public HealthBar healthBar;
+    //public ManaBar  manaBar;
+    //public Camera camara;
+    private Text nivellUI, vidaUI, manaUI;
+    private HealthBar healthBar;
+    private ManaBar manaBar;
+    private Camera camara;
+
     public NPC npc;
-    public GameObject gameOver, bulletUp, bulletDown, bulletLeft, bulletRigth;
+
+    //public GameObject gameOver, bulletUp, bulletDown, bulletLeft, bulletRigth;
+    public GameObject bulletUp, bulletDown, bulletLeft, bulletRigth;
+    private GameObject gameOver;
+
     AudioSource sound;
 
     public LayerMask enemyLayer;
@@ -29,7 +39,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Transform attackHitboxPos;
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private GameObject levelUp;
-    [SerializeField] private UIInventory uiInventory;
+    //[SerializeField] private UIInventory uiInventory;
+    private UIInventory uiInventory;
+
 
     Animator anim;
     Rigidbody2D rb;
@@ -48,6 +60,16 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        ui = GameObject.FindGameObjectWithTag("UI");
+        healthBar = ui.GetComponentInChildren<HealthBar>();
+        manaBar = ui.GetComponentInChildren<ManaBar>();
+        nivellUI = GameObject.Find("/UI2/Nivell").GetComponent<Text>();
+        vidaUI = GameObject.Find("/UI2/HealthBar/HealthText").GetComponent<Text>();
+        manaUI = GameObject.Find("/UI2/ManaBar/ManaText").GetComponent<Text>();
+        gameOver = GameObject.Find("/UI2/GameOver");
+        camara = GameObject.Find("/Main Camera").GetComponent<Camera>(); ;
+        uiInventory = ui.GetComponentInChildren<UIInventory>();
+
         uiInventory.SetInventory(inventory);
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -62,7 +84,7 @@ public class PlayerController : MonoBehaviour
         manaUI.text = "Mana: " + mana;
         nivellUI.text = "nivell: " + level;
         vidaUI.text = "Vida: " + health;
-        
+
     }
 
     void Update()

@@ -850,6 +850,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 38.700012
       objectReference: {fileID: 0}
+    - target: {fileID: 8856360340996170681, guid: e0d6e9de01201e44ab03312986496493,
+        type: 3}
+      propertyPath: m_Name
+      value: ManaBar
+      objectReference: {fileID: 0}
     - target: {fileID: 8856360341642813747, guid: e0d6e9de01201e44ab03312986496493,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -968,7 +973,7 @@ PrefabInstance:
     - target: {fileID: 8856360341874116006, guid: e0d6e9de01201e44ab03312986496493,
         type: 3}
       propertyPath: m_Name
-      value: UI
+      value: UI2
       objectReference: {fileID: 0}
     - target: {fileID: 8856360341874116006, guid: e0d6e9de01201e44ab03312986496493,
         type: 3}
@@ -978,7 +983,7 @@ PrefabInstance:
     - target: {fileID: 8856360341874116006, guid: e0d6e9de01201e44ab03312986496493,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: UI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d6e9de01201e44ab03312986496493, type: 3}
