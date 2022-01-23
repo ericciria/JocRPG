@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 
-public class PlayerController : MonoBehaviour
+
+public class PlayerController : MonoBehaviour, IsSaveable
 {
     public GameObject ui;
     public int maxHealth = 100, maxMana = 100;
@@ -403,6 +404,42 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackHitboxPos.position, attackRadius);
+    }
+
+    [System.Serializable]
+    struct PlayerDataNou
+    {
+        public int level;
+        public int health;
+        public float mana;
+
+        public float[] position;
+    }
+
+    public object CaptureState()
+    {
+        PlayerDataNou data;
+        data.level = level;
+        data.health = health;
+        data.mana = mana;
+
+        data.position = new float[3];
+
+        data.position[0] = transform.position.x;
+        data.position[1] = transform.position.y;
+        data.position[2] = transform.position.z;
+
+        return data;
+    }
+
+    public void RestoreState(object dataLoaded)
+    {
+        PlayerDataNou data = (PlayerDataNou)dataLoaded;
+        level = data.level;
+        health = data.health;
+        mana = data.mana;
+
+        transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
     }
 
 

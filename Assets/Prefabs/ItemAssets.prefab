@@ -43,9 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272ed05ba4c4746418e57e5422f151b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healingHerbSprite: {fileID: 21300000, guid: ae9e3956e955c1f4da32ca1b999831f3, type: 3}
+  healingHerbSprite: {fileID: 21300000, guid: a04aa695d1e796b49a4df9c05803e0a8, type: 3}
   keySprite: {fileID: -1428056306237756732, guid: dd14e492c37faab4196af7e3b091b2d4,
     type: 3}
   finalKeySprite: {fileID: -1428056306237756732, guid: dd14e492c37faab4196af7e3b091b2d4,
     type: 3}
-  healthPotionSprite: {fileID: 21300000, guid: ae9e3956e955c1f4da32ca1b999831f3, type: 3}
+  healthPotionSprite: {fileID: 21300000, guid: a04aa695d1e796b49a4df9c05803e0a8, type: 3}
