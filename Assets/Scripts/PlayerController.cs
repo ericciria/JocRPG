@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
 
-public class PlayerController : MonoBehaviour
+
+public class PlayerController : MonoBehaviour, IsSaveable
 {
+    public GameObject ui;
     public int maxHealth = 100, maxMana = 100;
 
     public float speed = 4f, mana;
@@ -14,12 +16,21 @@ public class PlayerController : MonoBehaviour
     public int attackDamage = 1;
     public int level, health, exp;
 
-    public Text nivellUI, vidaUI, manaUI;
-    public HealthBar healthBar;
-    public ManaBar  manaBar;
-    public Camera camara;
+    //public Text nivellUI, vidaUI, manaUI;
+    //public HealthBar healthBar;
+    //public ManaBar  manaBar;
+    //public Camera camara;
+    private Text nivellUI, vidaUI, manaUI;
+    private HealthBar healthBar;
+    private ManaBar manaBar;
+    private Camera camara;
+
     public NPC npc;
-    public GameObject gameOver, bulletUp, bulletDown, bulletLeft, bulletRigth;
+
+    //public GameObject gameOver, bulletUp, bulletDown, bulletLeft, bulletRigth;
+    public GameObject bulletUp, bulletDown, bulletLeft, bulletRigth;
+    private GameObject gameOver;
+
     AudioSource sound;
 
     public LayerMask enemyLayer;
@@ -29,7 +40,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public Transform attackHitboxPos;
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private GameObject levelUp;
-    [SerializeField] private UIInventory uiInventory;
+    //[SerializeField] private UIInventory uiInventory;
+    private UIInventory uiInventory;
+
 
     Animator anim;
     Rigidbody2D rb;
@@ -48,6 +61,16 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        ui = GameObject.FindGameObjectWithTag("UI");
+        healthBar = ui.GetComponentInChildren<HealthBar>();
+        manaBar = ui.GetComponentInChildren<ManaBar>();
+        nivellUI = GameObject.Find("/UI2/Nivell").GetComponent<Text>();
+        vidaUI = GameObject.Find("/UI2/HealthBar/HealthText").GetComponent<Text>();
+        manaUI = GameObject.Find("/UI2/ManaBar/ManaText").GetComponent<Text>();
+        gameOver = GameObject.Find("/UI2/GameOver");
+        camara = GameObject.Find("/Main Camera").GetComponent<Camera>(); ;
+        uiInventory = ui.GetComponentInChildren<UIInventory>();
+
         uiInventory.SetInventory(inventory);
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -62,7 +85,7 @@ public class PlayerController : MonoBehaviour
         manaUI.text = "Mana: " + mana;
         nivellUI.text = "nivell: " + level;
         vidaUI.text = "Vida: " + health;
-        
+
     }
 
     void Update()
@@ -381,6 +404,42 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(attackHitboxPos.position, attackRadius);
+    }
+
+    [System.Serializable]
+    struct PlayerDataNou
+    {
+        public int level;
+        public int health;
+        public float mana;
+
+        public float[] position;
+    }
+
+    public object CaptureState()
+    {
+        PlayerDataNou data;
+        data.level = level;
+        data.health = health;
+        data.mana = mana;
+
+        data.position = new float[3];
+
+        data.position[0] = transform.position.x;
+        data.position[1] = transform.position.y;
+        data.position[2] = transform.position.z;
+
+        return data;
+    }
+
+    public void RestoreState(object dataLoaded)
+    {
+        PlayerDataNou data = (PlayerDataNou)dataLoaded;
+        level = data.level;
+        health = data.health;
+        mana = data.mana;
+
+        transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
     }
 
 

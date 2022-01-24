@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2622453707379437818}
   - component: {fileID: 2622453707379437816}
   - component: {fileID: 2622453707379437817}
+  - component: {fileID: 7213238954634433574}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -50,6 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e267cb8f7fe8047499e4f96c4f852ba9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ui: {fileID: 0}
   maxHealth: 100
   maxMana: 100
   speed: 8
@@ -60,15 +62,7 @@ MonoBehaviour:
   level: 1
   health: 0
   exp: 0
-  enemies: 0
-  nivellUI: {fileID: 0}
-  vidaUI: {fileID: 0}
-  manaUI: {fileID: 0}
-  healthBar: {fileID: 0}
-  manaBar: {fileID: 0}
-  camara: {fileID: 0}
   npc: {fileID: 0}
-  gameOver: {fileID: 0}
   bulletUp: {fileID: 7833108131526999104, guid: 315d314fc5f989b4aaba3b376895a77c,
     type: 3}
   bulletDown: {fileID: 464272647622159011, guid: 44307d501fb0968428f2eadbe4aeb6e5,
@@ -86,6 +80,7 @@ MonoBehaviour:
     type: 3}
   levelUp: {fileID: 8571521873155388730, guid: 45a8a21727bf9ff469d86b06bf5c14f4, type: 3}
   canSave: 0
+  sumarVida: 0
 --- !u!212 &2622453707379437823
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -312,6 +307,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7213238954634433574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2622453707379437809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a663cecc18211fc458b2420d0699a27c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GUID: 
 --- !u!1 &2622453707784702770
 GameObject:
   m_ObjectHideFlags: 0

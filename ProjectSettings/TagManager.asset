@@ -15,6 +15,7 @@ TagManager:
   - cubu
   - bala
   - vida
+  - UI
   layers:
   - Default
   - TransparentFX
