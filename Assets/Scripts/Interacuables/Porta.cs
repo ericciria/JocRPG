@@ -7,6 +7,7 @@ public class Porta : MonoBehaviour
     Rigidbody2D rb;
     Vector2 mov;
     public int contador;
+    [SerializeField] Sprite sprite2;
 
     void Start()
     {

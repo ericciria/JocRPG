@@ -261,16 +261,27 @@ public class PlayerController : MonoBehaviour, IsSaveable
         {
             if (objecte.GetComponent<Interactuable>() != null)
             {
-                Interactuable qwer = objecte.GetComponent<Interactuable>();
-                if(qwer.activat == false){
-                    qwer.activat = true;
-                    qwer.Activar();
+                Interactuable interactuable = objecte.GetComponent<Interactuable>();
+                if(interactuable.activat == false){
+                    interactuable.activat = true;
+                    interactuable.Activar();
                 }
             }
             if (objecte.GetComponent<Palanca>() != null)
             {
-                Palanca qwer = objecte.GetComponent<Palanca>();
-                qwer.Activar();
+                Palanca palanca = objecte.GetComponent<Palanca>();
+                palanca.Activar();
+            }
+            if (objecte.GetComponent<KeyDoor>() != null)
+            {
+                KeyDoor keyDoor = objecte.GetComponent<KeyDoor>();
+                Item key = new Item { itemType = Item.ItemType.Key, amount = 1 };
+                if (inventory.CheckItem(key) && !keyDoor.activat)
+                {
+                    inventory.RemoveItem(key);
+                    uiInventory.RefreshInventory();
+                    keyDoor.Activar();
+                }                
             }
         }
     }

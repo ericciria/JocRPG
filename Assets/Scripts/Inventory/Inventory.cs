@@ -59,6 +59,28 @@ public class Inventory
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
+    public bool CheckItem(Item item)
+    {
+        Item itemInInventory = null;
+        foreach (Item inventoryItem in itemList)
+        {
+            Debug.Log(inventoryItem.itemType);
+            if (inventoryItem.itemType == item.itemType)
+            {
+                inventoryItem.amount -= item.amount;
+                itemInInventory = inventoryItem;
+            }
+        }
+        if (itemInInventory != null && itemInInventory.amount <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public List<Item> GetItemList()
     {
         return itemList;
