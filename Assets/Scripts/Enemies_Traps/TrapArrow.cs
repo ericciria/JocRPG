@@ -7,11 +7,11 @@ public class TrapArrow : MonoBehaviour
 
     public GameObject bullet, bulletParent;
     private float fireCooldown;
-    public float fireRate = 1;
+    public float fireRate;
 
     void Start()
     {
-        
+        fireRate = Random.Range(0.7f, 1.3f);
     }
 
     void Update()
