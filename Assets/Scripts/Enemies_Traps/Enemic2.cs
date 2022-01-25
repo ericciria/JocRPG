@@ -34,6 +34,7 @@ public class Enemic2 : MonoBehaviour
         maxHealth = 5 * level;
         health = maxHealth;
         expPoints = 2 * level;
+        target = GameObject.Find("Player").GetComponent<Transform>();
         //distance = 4;
     }
 
