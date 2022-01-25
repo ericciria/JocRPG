@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
     private GameObject gameOver;
 
     AudioSource sound;
+    [SerializeField] AudioClip audioHurt, audioAttack, audioMagic, audioVictory, audioGameOver, audioActivable;
 
     public LayerMask enemyLayer;
     private LayerMask objectLayer;
@@ -64,8 +65,6 @@ public class PlayerController : MonoBehaviour, IsSaveable
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         camara = GameObject.Find("Main Camera").GetComponent<Camera>();
-        Debug.Log("OnSceneLoaded: " + scene.name);
-        Debug.Log(mode);
     }
 
     void Start()
@@ -94,6 +93,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
         manaUI.text = "Mana: " + mana;
         nivellUI.text = "nivell: " + level;
         vidaUI.text = "Vida: " + health;
+
 
     }
 
@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
 
         if ((Input.GetKeyDown("space") || Input.GetKeyDown(KeyCode.Z)) && !attacking)
         {
+            sound.PlayOneShot(audioAttack, 0.7F);
             anim.SetTrigger("Attacking");
             CheckAttackHitbox();
         }
@@ -175,6 +176,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
         {
             if (mana > 10 * level)
             {
+                sound.PlayOneShot(audioMagic, 0.7F);
                 mana -= 10 * level;
                 manaUI.text = "Mana: " + mana;
                 manaBar.SetMana(mana);
@@ -221,6 +223,10 @@ public class PlayerController : MonoBehaviour, IsSaveable
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            UsePotion();
+        }
 
         if (mana < maxMana)
         {
@@ -229,6 +235,39 @@ public class PlayerController : MonoBehaviour, IsSaveable
             manaUI.text = "Mana: " + mana;
             manaBar.SetMana(mana);
 
+        }
+    }
+
+    private void UsePotion()
+    {
+        Item potion = new Item { itemType = Item.ItemType.HealthPotion, amount = 1 };
+        if (inventory.CheckItem(potion))
+        {
+            
+            if (health == maxHealth)
+            {
+                sound.PlayOneShot(audioMagic, 0.7F);
+                return;
+            }
+            if (health < maxHealth / 2)
+            {
+                sound.PlayOneShot(audioActivable, 0.7F);
+                health = health + maxHealth/2;
+                vidaUI.text = "Vida: " + health;
+                healthBar.SetHealth(health);
+            }
+            else
+            {
+                sound.PlayOneShot(audioActivable, 0.7F);
+                health = maxHealth;
+                vidaUI.text = "Vida: " + health;
+                healthBar.SetHealth(health);
+            }
+            inventory.RemoveItem(potion);
+        }
+        else
+        {
+            sound.PlayOneShot(audioHurt, 0.7F);
         }
     }
 
@@ -278,6 +317,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
                 Item key = new Item { itemType = Item.ItemType.Key, amount = 1 };
                 if (inventory.CheckItem(key) && !keyDoor.activat)
                 {
+                    sound.PlayOneShot(audioActivable, 0.7F);
                     keyDoor.Activar();
                     inventory.RemoveItem(key);
                 }                
@@ -287,12 +327,14 @@ public class PlayerController : MonoBehaviour, IsSaveable
 
     public void DamagePlayer(int damage)
     {
+        sound.PlayOneShot(audioHurt, 0.7F);
         health -= damage;
         healthBar.SetHealth(health);
         vidaUI.text = "Vida: " + health;
 
         if (this.health <= 0)
         {
+            sound.PlayOneShot(audioGameOver, 0.7F);
             Instantiate(deathParticle, rb.transform.position, deathParticle.transform.rotation);
             health = 0;
             healthBar.SetHealth(health);

@@ -14,6 +14,9 @@ public class Boto : MonoBehaviour
     bool objectPressed;
     public UnityEvent myEvent;
 
+    public AudioClip click;
+    AudioSource audioSource;
+
 
 
     void Start()
@@ -21,7 +24,7 @@ public class Boto : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = sprite1;
         objectPressed = false;
-        //Debug.Log(spriteRenderer.sprite);
+        audioSource = GameObject.Find("Main Camera").GetComponent<AudioSource>();
     }
 
     public void Activar()
@@ -50,15 +53,18 @@ public class Boto : MonoBehaviour
             if (objectPressed)
             {
                 activat = true;
+                audioSource.PlayOneShot(click, 0.7F);
             }
             else
             {
                 activat = !activat;
+                audioSource.PlayOneShot(click, 0.7F);
             }
         }
-        else
-        {
+        else if (!activat){
             activat = true;
+            Debug.Log(audioSource);
+            audioSource.PlayOneShot(click, 0.7F);
         }
         if (objecte != null)
         {
