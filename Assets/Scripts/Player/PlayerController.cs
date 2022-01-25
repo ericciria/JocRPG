@@ -278,9 +278,8 @@ public class PlayerController : MonoBehaviour, IsSaveable
                 Item key = new Item { itemType = Item.ItemType.Key, amount = 1 };
                 if (inventory.CheckItem(key) && !keyDoor.activat)
                 {
-                    inventory.RemoveItem(key);
-                    uiInventory.RefreshInventory();
                     keyDoor.Activar();
+                    inventory.RemoveItem(key);
                 }                
             }
         }
@@ -335,7 +334,6 @@ public class PlayerController : MonoBehaviour, IsSaveable
             Vector2 difference = (transform.position - collision.transform.position).normalized;
             Vector2 force = difference * knockbackForce;
             rb.AddForce(force);
-            //Debug.Log("colisi� amb enemic");
         }
         if (collision.tag == "Death")
         {

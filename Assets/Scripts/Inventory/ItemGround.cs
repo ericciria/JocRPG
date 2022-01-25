@@ -22,8 +22,6 @@ public class ItemGround : MonoBehaviour
 
     public Item GetItem()
     {
-        //Debug.Log(item);
-
         return item;
     }
 

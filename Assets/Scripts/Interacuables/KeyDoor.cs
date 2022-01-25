@@ -30,11 +30,11 @@ public class KeyDoor: MonoBehaviour
     }
 
     public void Activar()
-    { 
+    {
+        activat = true;
         bc = this.GetComponent<BoxCollider2D>();
         bc.enabled = false;
         spriteRenderer.sprite = sprite2;
-        activat = true;
         myEvent.Invoke();   // Activo la funció que li assigno desde el inspector
     }
 }

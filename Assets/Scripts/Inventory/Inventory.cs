@@ -26,34 +26,58 @@ public class Inventory
         {
             if (inventoryItem.itemType == item.itemType)
             {
+                //Debug.Log(item.amount);
+                //Debug.Log(inventoryItem.amount);
                 inventoryItem.amount+=item.amount;
                 itemInInventory = true;
+                //Debug.Log(inventoryItem.amount);
             }
-
         }
         if(!itemInInventory)
         {
             itemList.Add(item);
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
+        Debug.Log("-----------");
+        foreach (Item inventoryItem in itemList)
+        {
+            Debug.Log(inventoryItem.amount);
+        }
     }
 
     public void RemoveItem(Item item)
     {
+        Debug.Log("-----------");
+        foreach (Item inventoryItem in itemList)
+        {
+            Debug.Log(inventoryItem.amount);
+        }
+        //Debug.Log("AAAAAAAAAAAAAAAAAAAAA");
+        //Debug.Log(item.amount);
         Item itemInInventory = null;
         foreach (Item inventoryItem in itemList)
         {
-            Debug.Log(inventoryItem.itemType);
+            //Debug.Log(inventoryItem.itemType);
+            //Debug.Log(inventoryItem.amount);
+            //Debug.Log(inventoryItem.itemType);
             if (inventoryItem.itemType == item.itemType)
             {
+                //Debug.Log(inventoryItem.amount);
+                //Debug.Log(item.amount);
                 inventoryItem.amount -= item.amount;
                 itemInInventory = inventoryItem;
+                //Debug.Log(inventoryItem.amount);
             }
 
         }
         if (itemInInventory != null && itemInInventory.amount <= 0)
         {
             itemList.Remove(itemInInventory);
+        }
+        Debug.Log("-----------");
+        foreach (Item inventoryItem in itemList)
+        {
+            Debug.Log(inventoryItem.amount);
         }
 
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
@@ -64,14 +88,13 @@ public class Inventory
         Item itemInInventory = null;
         foreach (Item inventoryItem in itemList)
         {
-            Debug.Log(inventoryItem.itemType);
+            //Debug.Log(inventoryItem.itemType);
             if (inventoryItem.itemType == item.itemType)
             {
-                inventoryItem.amount -= item.amount;
                 itemInInventory = inventoryItem;
             }
         }
-        if (itemInInventory != null && itemInInventory.amount <= 0)
+        if (itemInInventory != null && itemInInventory.amount >= 0)
         {
             return true;
         }
