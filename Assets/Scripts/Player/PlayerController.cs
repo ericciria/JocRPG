@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Assertions;
-
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour, IsSaveable
 {
@@ -16,10 +16,6 @@ public class PlayerController : MonoBehaviour, IsSaveable
     public int attackDamage = 1;
     public int level, health, exp;
 
-    //public Text nivellUI, vidaUI, manaUI;
-    //public HealthBar healthBar;
-    //public ManaBar  manaBar;
-    //public Camera camara;
     private Text nivellUI, vidaUI, manaUI;
     private HealthBar healthBar;
     private ManaBar manaBar;
@@ -27,7 +23,6 @@ public class PlayerController : MonoBehaviour, IsSaveable
 
     public NPC npc;
 
-    //public GameObject gameOver, bulletUp, bulletDown, bulletLeft, bulletRigth;
     public GameObject bulletUp, bulletDown, bulletLeft, bulletRigth;
     private GameObject gameOver;
 
@@ -40,12 +35,11 @@ public class PlayerController : MonoBehaviour, IsSaveable
     [SerializeField] public Transform attackHitboxPos;
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private GameObject levelUp;
-    //[SerializeField] private UIInventory uiInventory;
     private UIInventory uiInventory;
 
 
     Animator anim;
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     Vector2 mov;
 
     public bool canSave;
@@ -56,7 +50,22 @@ public class PlayerController : MonoBehaviour, IsSaveable
 
     private void Awake()
     {
+        if (FindObjectsOfType<PlayerController>().Length > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
         inventory = new Inventory();
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        camara = GameObject.Find("Main Camera").GetComponent<Camera>();
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
     }
 
     void Start()
@@ -68,7 +77,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
         vidaUI = GameObject.Find("/UI2/HealthBar/HealthText").GetComponent<Text>();
         manaUI = GameObject.Find("/UI2/ManaBar/ManaText").GetComponent<Text>();
         gameOver = GameObject.Find("/UI2/GameOver");
-        camara = GameObject.Find("/Main Camera").GetComponent<Camera>(); ;
+        camara = GameObject.Find("Main Camera").GetComponent<Camera>();
         uiInventory = ui.GetComponentInChildren<UIInventory>();
 
         uiInventory.SetInventory(inventory);
@@ -111,7 +120,10 @@ public class PlayerController : MonoBehaviour, IsSaveable
             uiInventory.RefreshInventory();
         }
 
-        camara.transform.position = new Vector3(rb.position.x, rb.position.y, -10);
+        if (camara != null)
+        {
+            camara.transform.position = new Vector3(rb.position.x, rb.position.y, -10);
+        }
 
     }
 
