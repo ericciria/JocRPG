@@ -4,11 +4,16 @@ using UnityEngine;
 
 public static class DataPuzzles
 {
-    private static bool _l2_p1;
+    private static bool _l2_p1, _l2_p2;
     public static bool l2_p1
     {
         get{return _l2_p1;}
         set{_l2_p1 = value;}
+    }
+    public static bool l2_p2
+    {
+        get { return _l2_p2; }
+        set { _l2_p2 = value; }
     }
 
 

@@ -30,8 +30,7 @@ public class KeyDoor: MonoBehaviour
     }
 
     public void Activar()
-    {
-        
+    { 
         bc = this.GetComponent<BoxCollider2D>();
         bc.enabled = false;
         spriteRenderer.sprite = sprite2;

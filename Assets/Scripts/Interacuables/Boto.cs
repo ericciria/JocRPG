@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Boto : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Boto : MonoBehaviour
     [SerializeField] Sprite sprite2;
     [SerializeField] bool intermitent;
     bool objectPressed;
+    public UnityEvent myEvent;
 
 
 
@@ -44,6 +46,7 @@ public class Boto : MonoBehaviour
     {
         if (intermitent)
         {
+            myEvent.Invoke();
             if (objectPressed)
             {
                 activat = true;
@@ -57,7 +60,11 @@ public class Boto : MonoBehaviour
         {
             activat = true;
         }
-        objecte.SetActive(activat);
+        if (objecte != null)
+        {
+            objecte.SetActive(activat);
+        }
+        
     }
 
     void OnTriggerEnter2D(Collider2D col)
