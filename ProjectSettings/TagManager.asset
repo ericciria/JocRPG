@@ -16,6 +16,7 @@ TagManager:
   - bala
   - vida
   - UI
+  - Wall
   layers:
   - Default
   - TransparentFX
