@@ -22062,7 +22062,7 @@ GameObject:
   - component: {fileID: 1046678646}
   - component: {fileID: 1046678647}
   m_Layer: 11
-  m_Name: prueva
+  m_Name: spriteminimap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -22076,8 +22076,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1046678645}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -0.00000023842, z: 0}
-  m_LocalScale: {x: 2.279165, y: 2.279165, z: 2.279165}
+  m_LocalPosition: {x: -0.02, y: -0.00000047684, z: 0}
+  m_LocalScale: {x: 2.524101, y: 2.524101, z: 2.524101}
   m_Children: []
   m_Father: {fileID: 242317363}
   m_RootOrder: 1
@@ -22234,6 +22234,11 @@ PrefabInstance:
         type: 3}
       propertyPath: uiInventory
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7059136174806332605, guid: 9e38bc2e1a299394f90cbcfef4e5e43f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e38bc2e1a299394f90cbcfef4e5e43f, type: 3}
