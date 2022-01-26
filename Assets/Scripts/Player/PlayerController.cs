@@ -334,6 +334,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
 
         if (this.health <= 0)
         {
+            Debug.Log("hola");
             sound.PlayOneShot(audioGameOver, 0.7F);
             Instantiate(deathParticle, rb.transform.position, deathParticle.transform.rotation);
             health = 0;
