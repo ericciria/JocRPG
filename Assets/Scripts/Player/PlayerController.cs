@@ -314,19 +314,21 @@ public class PlayerController : MonoBehaviour, IsSaveable
             if (objecte.GetComponent<KeyDoor>() != null)
             {
                 KeyDoor keyDoor = objecte.GetComponent<KeyDoor>();
-                Item key = new Item { itemType = Item.ItemType.Key, amount = 1 };
-                Item keyFinal = new Item { itemType = Item.ItemType.FinalKey, amount = 1 };
-                if (inventory.CheckItem(key) && !keyDoor.activat && !keyDoor.final)
-                {
-                    sound.PlayOneShot(audioActivable, 0.7F);
-                    keyDoor.Activar();
-                    inventory.RemoveItem(key);
-                }       
-                else if(inventory.CheckItem(keyFinal) && !keyDoor.activat && keyDoor.final){
-                    sound.PlayOneShot(audioActivable, 0.7F);
-                    keyDoor.Activar();
-                    inventory.RemoveItem(keyFinal);
-                }         
+                if(keyDoor.isOpenableWithKey){
+                    Item key = new Item { itemType = Item.ItemType.Key, amount = 1 };
+                    Item keyFinal = new Item { itemType = Item.ItemType.FinalKey, amount = 1 };
+                    if (inventory.CheckItem(key) && !keyDoor.activat && !keyDoor.final)
+                    {
+                        sound.PlayOneShot(audioActivable, 0.7F);
+                        keyDoor.Activar();
+                        inventory.RemoveItem(key);
+                    }       
+                    else if(inventory.CheckItem(keyFinal) && !keyDoor.activat && keyDoor.final){
+                        sound.PlayOneShot(audioActivable, 0.7F);
+                        keyDoor.Activar();
+                        inventory.RemoveItem(keyFinal);
+                    }  
+                }        
             }
         }
     }

@@ -10,7 +10,7 @@ public class KeyDoor: MonoBehaviour
     [SerializeField] Sprite sprite2;
     Puzzle2_1 puzzle;
 
-    public bool activat, final;
+    public bool activat, final, isOpenableWithKey;
     public UnityEvent myEvent;  // faig l'event per poder activar una funci� diferent per cada porta i poder reutilitzar el script,
                                 // ja que guardo la informaci� en una classe estatica perque es mantingui entre escenes.
 
