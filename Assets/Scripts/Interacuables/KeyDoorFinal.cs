@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class KeyDoor: MonoBehaviour
+public class KeyDoorFinal : MonoBehaviour
 {
     Rigidbody2D rb;
     BoxCollider2D bc;
     [SerializeField] Sprite sprite2;
     Puzzle2_1 puzzle;
 
-    public bool activat, final;
+    public bool activat = false;
     public UnityEvent myEvent;  // faig l'event per poder activar una funci� diferent per cada porta i poder reutilitzar el script,
                                 // ja que guardo la informaci� en una classe estatica perque es mantingui entre escenes.
 

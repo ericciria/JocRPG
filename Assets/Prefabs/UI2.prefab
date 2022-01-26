@@ -962,6 +962,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 8856360341839374872, guid: e0d6e9de01201e44ab03312986496493,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8856360341874116001, guid: e0d6e9de01201e44ab03312986496493,
         type: 3}
       propertyPath: m_Pivot.x
