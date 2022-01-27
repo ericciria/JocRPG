@@ -12,7 +12,7 @@ public class movimentDona : MonoBehaviour
     Rigidbody2D rb;
     Vector2 mov;
     int vida, vidamax;
-    public PlayerController v;
+    private PlayerController player;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +24,7 @@ public class movimentDona : MonoBehaviour
         mov = new Vector2(0, 2);
         anim = GetComponent<Animator>();
         text.text = "Salut Germana: " + vida;
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -77,12 +78,11 @@ public class movimentDona : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player"  && v.sumarVida == true)
+        if (collision.gameObject.tag == "Player"  && player.sumarVida == true)
         {
-            
             vida +=5;
             text.text = "Salut Germana: " + vida;
-            v.sumarVida = false;
+            player.sumarVida = false;
             Debug.Log("Hola");
         }
 
