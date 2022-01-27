@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
     public NPC npc;
 
     public GameObject bulletUp, bulletDown, bulletLeft, bulletRigth;
-    private GameObject gameOver;
+    private GameObject gameOver, victory;
 
     AudioSource sound;
     [SerializeField] AudioClip audioHurt, audioAttack, audioMagic, audioVictory, audioGameOver, audioActivable;
@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour, IsSaveable
     [SerializeField] private GameObject deathParticle;
     [SerializeField] private GameObject levelUp;
     private UIInventory uiInventory;
+
+    public ContadorVidaGermana contadorVida;
 
 
     Animator anim;
@@ -75,10 +77,15 @@ public class PlayerController : MonoBehaviour, IsSaveable
         nivellUI = GameObject.Find("/UI2/Nivell").GetComponent<Text>();
         vidaUI = GameObject.Find("/UI2/HealthBar/HealthText").GetComponent<Text>();
         manaUI = GameObject.Find("/UI2/ManaBar/ManaText").GetComponent<Text>();
+
         gameOver = GameObject.Find("/UI2/GameOver");
         gameOver.SetActive(false);
+        victory = GameObject.Find("/UI2/Victoria");
+        victory.SetActive(false);
+
         camara = GameObject.Find("Main Camera").GetComponent<Camera>();
         uiInventory = ui.GetComponentInChildren<UIInventory>();
+        contadorVida = GameObject.Find("ContadorGermana").GetComponent<ContadorVidaGermana>();
 
         uiInventory.SetInventory(inventory);
         anim = GetComponent<Animator>();
@@ -329,6 +336,23 @@ public class PlayerController : MonoBehaviour, IsSaveable
                         inventory.RemoveItem(keyFinal);
                     }  
                 }        
+            }
+            if (objecte.GetComponent<movimentDona>() != null)
+            {
+                Item herba = new Item { itemType = Item.ItemType.HealingHerb, amount = 1 };
+                Item cura = new Item { itemType = Item.ItemType.Cure, amount = 1 };
+                if (inventory.CheckItem(cura))
+                {
+                    sound.PlayOneShot(audioActivable, 0.7F);
+                    victory.SetActive(true);
+                    inventory.RemoveItem(cura);
+                }
+                else if (inventory.CheckItem(herba))
+                {
+                    sound.PlayOneShot(audioActivable, 0.7F);
+                    contadorVida.vida += 20;
+                    inventory.RemoveItem(herba);
+                }
             }
         }
     }

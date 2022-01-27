@@ -79,7 +79,7 @@ public class Boto : MonoBehaviour
         {
             Activar();
         }
-        if (col.gameObject.tag == "Object")
+        if (col.gameObject.tag == "Box")
         {
             Debug.Log("A");
             objectPressed = true;
@@ -94,7 +94,7 @@ public class Boto : MonoBehaviour
             activat = true;
             Activar();
         }
-        if (col.gameObject.tag == "Object")
+        if (col.gameObject.tag == "Box")
         {
             Debug.Log("AA");
             objectPressed = false;

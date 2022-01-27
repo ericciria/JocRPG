@@ -11,12 +11,13 @@ public class PassarNivrl : MonoBehaviour
 
     [SerializeField] private string sceneName;
     [SerializeField] Vector2 playerPos;
-    GameObject player;
+    GameObject player, inventari;
 
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        inventari = GameObject.Find("Inventory");
     }
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class PassarNivrl : MonoBehaviour
 
         if (col.CompareTag("Player"))
         {
+            inventari.SetActive(true);
             player.transform.position = playerPos;
             SceneManager.LoadScene(sceneName);
         }
