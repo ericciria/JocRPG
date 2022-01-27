@@ -10,6 +10,7 @@ public class Item
         Key,
         FinalKey,
         HealthPotion,
+        Cure,
     }
 
     public ItemType itemType;
@@ -24,6 +25,7 @@ public class Item
             case ItemType.Key:          return ItemAssets.Instance.keySprite;
             case ItemType.FinalKey:     return ItemAssets.Instance.finalKeySprite;
             case ItemType.HealthPotion: return ItemAssets.Instance.healingHerbSprite;
+            case ItemType.Cure:         return ItemAssets.Instance.cureSprite;
         }
     }
     

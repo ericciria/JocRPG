@@ -12,10 +12,10 @@ public class Inventory
     {
         itemList = new List<Item>();
 
-        AddItem(new Item { itemType = Item.ItemType.HealingHerb, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.Key, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.FinalKey, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.HealingHerb, amount = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.Key, amount = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.FinalKey, amount = 1 });
+        //AddItem(new Item { itemType = Item.ItemType.HealthPotion, amount = 1 });
 
     }
 
