@@ -45,7 +45,7 @@ public class movimentDona : MonoBehaviour
     }
     IEnumerator Moure()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         mov =mov * -1;
         potCambiar = true;
     }

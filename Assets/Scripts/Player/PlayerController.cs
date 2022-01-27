@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
     public NPC npc;
 
     public GameObject bulletUp, bulletDown, bulletLeft, bulletRigth;
-    private GameObject gameOver, victory;
+    private GameObject gameOver, victory, saveLoad;
 
     AudioSource sound;
     [SerializeField] AudioClip audioHurt, audioAttack, audioMagic, audioVictory, audioGameOver, audioActivable;
@@ -82,6 +82,8 @@ public class PlayerController : MonoBehaviour, IsSaveable
         gameOver.SetActive(false);
         victory = GameObject.Find("/UI2/Victoria");
         victory.SetActive(false);
+        saveLoad = GameObject.Find("/UI2/SaveLoad");
+        saveLoad.SetActive(false);
 
         camara = GameObject.Find("Main Camera").GetComponent<Camera>();
         uiInventory = ui.GetComponentInChildren<UIInventory>();
@@ -98,7 +100,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
         sound = gameObject.GetComponent<AudioSource>();
         objectLayer = LayerMask.GetMask("Object");
 
-        manaUI.text = "Mana: " + mana;
+        vidaUI.text = "Vida: " + health;
         nivellUI.text = "nivell: " + level;
         vidaUI.text = "Vida: " + health;
 
@@ -119,6 +121,10 @@ public class PlayerController : MonoBehaviour, IsSaveable
         if (Input.GetKeyDown(KeyCode.E))
         {
             CheckInteractuable();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            saveLoad.SetActive(!saveLoad.activeSelf);
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -346,6 +352,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
                     sound.PlayOneShot(audioActivable, 0.7F);
                     victory.SetActive(true);
                     inventory.RemoveItem(cura);
+                    contadorVida.guanyat = true;
                 }
                 else if (inventory.CheckItem(herba))
                 {
@@ -452,6 +459,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
         public int level;
         public int health;
         public float mana;
+        public string escena;
 
         public float[] position;
     }
@@ -462,6 +470,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
         data.level = level;
         data.health = health;
         data.mana = mana;
+        data.escena = SceneManager.GetActiveScene().name;
 
         data.position = new float[3];
 
@@ -478,6 +487,9 @@ public class PlayerController : MonoBehaviour, IsSaveable
         level = data.level;
         health = data.health;
         mana = data.mana;
+        SceneManager.LoadScene(data.escena);
+        vidaUI.text = "Vida: " + health;
+        vidaUI.text = "Vida: " + health;
 
         transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
     }

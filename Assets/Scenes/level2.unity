@@ -29983,7 +29983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1184440812
 Transform:
   m_ObjectHideFlags: 0
@@ -51114,6 +51114,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Porta3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913978861026360876, guid: 16a12c94d8cc62541aa1f89601199934,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913978861026360876, guid: 16a12c94d8cc62541aa1f89601199934,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6913978861026360876, guid: 16a12c94d8cc62541aa1f89601199934,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6913978861026360878, guid: 16a12c94d8cc62541aa1f89601199934,
         type: 3}

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-
+    PlayerController player;
     public void Pantallas()
     {
         SceneManager.LoadScene("Seleccio");
@@ -14,6 +14,8 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Menu");
+        player = GameObject.Find("Player").GetComponent<PlayerController>(); ;
+        player.ui.SetActive(false);
     }
     public void Opcions()
     {
@@ -26,6 +28,12 @@ public class MenuManager : MonoBehaviour
 
     public void Level1()
     {
+        
+        if (GameObject.Find("Player")!= null)
+        {
+            player = GameObject.Find("Player").GetComponent<PlayerController>();
+            player.ui.SetActive(true);
+        }
         SceneManager.LoadScene("casaFora");
     }
 

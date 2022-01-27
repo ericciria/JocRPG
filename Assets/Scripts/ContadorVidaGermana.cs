@@ -8,6 +8,7 @@ public class ContadorVidaGermana : MonoBehaviour
     private Text text;
     public int vida, vidamax;
     public bool temporitzadorVida;
+    public bool guanyat = false;
     GameObject gameOver;
 
     // Start is called before the first frame update
@@ -26,12 +27,13 @@ public class ContadorVidaGermana : MonoBehaviour
         if (vida <= 0)
         {
             gameOver.SetActive(true);
+            guanyat = true;
         }
     }
 
     public void startCorroutine()
     {
-        if (temporitzadorVida)
+        if (temporitzadorVida && !guanyat)
         {
             StartCoroutine(treureVida());
             temporitzadorVida = false;
