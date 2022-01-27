@@ -6,7 +6,7 @@ public class Interactuable : MonoBehaviour
 {
     Rigidbody2D rb;
     public bool activat;
-    [SerializeField] public GameObject objecte;
+    //[SerializeField] public GameObject objecte;
     public SpriteRenderer spriteRenderer;
     [SerializeField] Sprite newSprite;
 
@@ -22,18 +22,18 @@ public class Interactuable : MonoBehaviour
     public void Activar()
     {
         ChangeSprite();
-        ActivarObjecte();
+        //ActivarObjecte();
     }
 
     public void ChangeSprite()
     {
         spriteRenderer.sprite = newSprite;
     }
-    public void ActivarObjecte()
+    /*public void ActivarObjecte()
     {
         if (!objecte.activeSelf)
         {
             objecte.SetActive(true);
         }
-    }
+    }*/
 }

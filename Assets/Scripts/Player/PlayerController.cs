@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour, IsSaveable
         vidaUI = GameObject.Find("/UI2/HealthBar/HealthText").GetComponent<Text>();
         manaUI = GameObject.Find("/UI2/ManaBar/ManaText").GetComponent<Text>();
         gameOver = GameObject.Find("/UI2/GameOver");
+        gameOver.SetActive(false);
         camara = GameObject.Find("Main Camera").GetComponent<Camera>();
         uiInventory = ui.GetComponentInChildren<UIInventory>();
 
@@ -102,14 +103,13 @@ public class PlayerController : MonoBehaviour, IsSaveable
         Movements();
         Animations();
         SwordAttack();
-        SaveLoad();
         Magic();
 
         if (Input.GetKeyDown(KeyCode.P))
         {
             DamagePlayer(10);
         }
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             CheckInteractuable();
         }
@@ -314,13 +314,21 @@ public class PlayerController : MonoBehaviour, IsSaveable
             if (objecte.GetComponent<KeyDoor>() != null)
             {
                 KeyDoor keyDoor = objecte.GetComponent<KeyDoor>();
-                Item key = new Item { itemType = Item.ItemType.Key, amount = 1 };
-                if (inventory.CheckItem(key) && !keyDoor.activat)
-                {
-                    sound.PlayOneShot(audioActivable, 0.7F);
-                    keyDoor.Activar();
-                    inventory.RemoveItem(key);
-                }                
+                if(keyDoor.isOpenableWithKey){
+                    Item key = new Item { itemType = Item.ItemType.Key, amount = 1 };
+                    Item keyFinal = new Item { itemType = Item.ItemType.FinalKey, amount = 1 };
+                    if (inventory.CheckItem(key) && !keyDoor.activat && !keyDoor.final)
+                    {
+                        sound.PlayOneShot(audioActivable, 0.7F);
+                        keyDoor.Activar();
+                        inventory.RemoveItem(key);
+                    }       
+                    else if(inventory.CheckItem(keyFinal) && !keyDoor.activat && keyDoor.final){
+                        sound.PlayOneShot(audioActivable, 0.7F);
+                        keyDoor.Activar();
+                        inventory.RemoveItem(keyFinal);
+                    }  
+                }        
             }
         }
     }
@@ -407,62 +415,6 @@ public class PlayerController : MonoBehaviour, IsSaveable
         {
             speedMultiplier = 1f;
         }
-    }
-
-    private void SaveLoad()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            if (canSave)
-            {
-                SavePlayer();
-            }
-            else
-            {
-                StartCoroutine(Contador());
-                Debug.Log("no es pot guardar");
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            LoadPlayer();
-        }
-    }
-
-    IEnumerator Contador()
-    {
-        yield return new WaitForSeconds(1);
-        canSave = true;
-    }
-
-    private void SavePlayer()
-    {
-        PlayerData data = new PlayerData(this);
-        data.characterLevel = level;
-        data.health = health;
-        data.mana = mana;
-
-        data.position[0] = transform.position.x;
-        data.position[1] = transform.position.y;
-        data.position[2] = transform.position.z;
-
-        SaveSystem.SavePlayer(data);
-    }
-
-    private void LoadPlayer()
-    {
-        PlayerData data = SaveSystem.LoadPlayer();
-        
-        level = data.characterLevel;
-        health = data.health;
-        mana = data.mana;
-
-        transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
-
-        vidaUI.text = "Vida: " + health;
-        nivellUI.text = "nivell: " + level;
-        healthBar.SetHealth(health);
-        manaBar.SetMana(mana);
     }
 
     private void OnDrawGizmos()

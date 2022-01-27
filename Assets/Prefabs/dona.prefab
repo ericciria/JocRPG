@@ -276,6 +276,7 @@ GameObject:
   - component: {fileID: 1749107138592489185}
   - component: {fileID: 1749107138592489189}
   - component: {fileID: 1749107138592489188}
+  - component: {fileID: 3491564137922281933}
   m_Layer: 0
   m_Name: dona
   m_TagString: Untagged
@@ -421,3 +422,18 @@ CircleCollider2D:
   m_Offset: {x: 0.015683174, y: 0.094100714}
   serializedVersion: 2
   m_Radius: 0.54658294
+--- !u!114 &3491564137922281933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749107138592489118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67c5ecdd131341445a8eb8f1be7025a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 0}
+  dialogueTxt: {fileID: 0}
+  dialogueLines: []

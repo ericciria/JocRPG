@@ -10,15 +10,15 @@ public class KeyDoor: MonoBehaviour
     [SerializeField] Sprite sprite2;
     Puzzle2_1 puzzle;
 
-    public bool activat;
-    public UnityEvent myEvent;  // faig l'event per poder activar una funció diferent per cada porta i poder reutilitzar el script,
-                                // ja que guardo la informació en una classe estatica perque es mantingui entre escenes.
+    public bool activat, final, isOpenableWithKey;
+    public UnityEvent myEvent;  // faig l'event per poder activar una funciï¿½ diferent per cada porta i poder reutilitzar el script,
+                                // ja que guardo la informaciï¿½ en una classe estatica perque es mantingui entre escenes.
 
     SpriteRenderer spriteRenderer;
 
     private void Awake()
     {
-        // Ho fico en l'Awake perque sinó peta quan en Puzzle2_1 faig Activar()
+        // Ho fico en l'Awake perque sinï¿½ peta quan en Puzzle2_1 faig Activar()
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -26,7 +26,6 @@ public class KeyDoor: MonoBehaviour
     void Start()
     {
         puzzle = gameObject.GetComponentInParent<Puzzle2_1>();
-        activat = false;
     }
 
     public void Activar()
@@ -35,6 +34,6 @@ public class KeyDoor: MonoBehaviour
         bc = this.GetComponent<BoxCollider2D>();
         bc.enabled = false;
         spriteRenderer.sprite = sprite2;
-        myEvent.Invoke();   // Activo la funció que li assigno desde el inspector
+        myEvent.Invoke();   // Activo la funciï¿½ que li assigno desde el inspector
     }
 }

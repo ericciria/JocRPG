@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Puzzle2_1 : MonoBehaviour
 {
-    private KeyDoor porta1, porta2;
+    private KeyDoor porta1, porta2, portaF;
     [SerializeField] PortaCVertical verticalDoor;
     [SerializeField] Boto button1,button2,button3,button4;
     [SerializeField] Boto button5, button6, button7, button8;
@@ -16,7 +16,8 @@ public class Puzzle2_1 : MonoBehaviour
     void Start()
     {
         porta1 = GameObject.Find("/Puzzles/Porta1").GetComponent<KeyDoor>();
-        porta1 = GameObject.Find("/Puzzles/Porta2").GetComponent<KeyDoor>();
+        porta2 = GameObject.Find("/Puzzles/Porta2").GetComponent<KeyDoor>();
+        portaF = GameObject.Find("/Puzzles/PortaFinal").GetComponent<KeyDoor>();
         Debug.Log(DataPuzzles.l2_p1);
         if (DataPuzzles.l2_p1)
         {
@@ -26,6 +27,10 @@ public class Puzzle2_1 : MonoBehaviour
         {
             porta2.Activar();
         }
+        if (DataPuzzles.l2_pF)
+        {
+            portaF.Activar();
+        }
     }
 
     public void Activarp1()
@@ -34,7 +39,11 @@ public class Puzzle2_1 : MonoBehaviour
     }
     public void Activarp2()
     {
-        DataPuzzles.l2_p1 = true;
+        DataPuzzles.l2_p2 = true;
+    }
+    public void ActivarpF()
+    {
+        DataPuzzles.l2_pF = true;
     }
 
     private void FixedUpdate()
